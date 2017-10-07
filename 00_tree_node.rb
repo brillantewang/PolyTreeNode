@@ -5,9 +5,7 @@ class PolyTreeNode
   attr_accessor :children
 
   def initialize(value)
-    @value = value
-    @parent = nil
-    @children = []
+    @value, @parent, @children = value, nil, []
   end
 
   def parent=(parent_node)
