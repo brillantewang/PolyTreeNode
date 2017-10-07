@@ -8,15 +8,19 @@ class PolyTreeNode
     @value, @parent, @children = value, nil, []
   end
 
+  def children
+    @children.dup
+  end
+
   def parent=(parent_node)
     return if self.parent == parent_node
 
     if @parent
-      @parent.children.delete(self)
+      @parent._children.delete(self)
     end
 
     @parent = parent_node
-    @parent.children << self unless @parent.nil?
+    @parent._children << self unless @parent.nil?
   end
 
   def add_child(child_node)
@@ -25,7 +29,6 @@ class PolyTreeNode
 
   def remove_child(child_node)
     raise "Child does not have parent =(" if child_node.parent.nil?
-    children.delete(child_node)
     child_node.parent = nil
   end
 
@@ -47,6 +50,12 @@ class PolyTreeNode
       return curr_node if curr_node.value == target_value
       queue += curr_node.children
     end
+  end
+
+  protected
+
+  def _children
+    @children
   end
 end
 
