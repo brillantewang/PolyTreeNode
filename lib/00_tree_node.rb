@@ -50,6 +50,8 @@ class PolyTreeNode
       return curr_node if curr_node.value == target_value
       queue += curr_node.children
     end
+
+    nil
   end
 
   protected
